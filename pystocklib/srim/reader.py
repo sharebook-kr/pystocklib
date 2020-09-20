@@ -1,6 +1,14 @@
 from pystocklib.common import *
 
 
+def make_acode(code):
+    acode = None
+    if len(code) == 6:
+        acode = 'A' + code
+    elif len(code) == 7:
+        acode = 'A' + code[1:]
+    return acode
+
 def get_5years_earning_rate():
     url = "https://www.kisrating.com/ratingsStatistics/statics_spread.do"
     selector = "#con_tab1 > div.table_ty1 > table > tbody > tr:nth-child(11) > td:nth-child(9)"
@@ -9,13 +17,15 @@ def get_5years_earning_rate():
 
 
 def get_net_worth(code):
-    url = f"http://comp.fnguide.com/SVO2/ASP/SVD_main.asp?pGB=1&gicode=A{code}"
+    acode = make_acode(code)
+    url = f"http://comp.fnguide.com/SVO2/ASP/SVD_main.asp?pGB=1&gicode={acode}"
     selector = "#highlight_D_A > table > tbody > tr:nth-child(10) > td:nth-child(4)"
     ret = get_element_by_css_selector(url, selector)
     return ret * 100000000
 
 def get_roe(code):
-    url = f"http://comp.fnguide.com/SVO2/ASP/SVD_main.asp?pGB=1&gicode=A{code}"
+    acode = make_acode(code)
+    url = f"http://comp.fnguide.com/SVO2/ASP/SVD_main.asp?pGB=1&gicode={acode}"
     selector = "#highlight_D_A > table > tbody > tr:nth-child(18) > td"
     vals = get_elements_by_css_selector(url, selector)
     roe3 = vals[:3]
@@ -29,7 +39,8 @@ def get_roe(code):
 
 
 def get_shares(code):
-    url = f"http://comp.fnguide.com/SVO2/ASP/SVD_main.asp?pGB=1&gicode=A{code}"
+    acode = make_acode(code)
+    url = f"http://comp.fnguide.com/SVO2/ASP/SVD_main.asp?pGB=1&gicode={acode}"
     selector = "#svdMainGrid1 > table > tbody > tr:nth-child(7) > td:nth-child(2)"
     total_shares = get_element_by_css_selector(url, selector, rawdata=True)
     total_shares = total_shares.split("/")[0]
@@ -45,7 +56,8 @@ def get_shares(code):
 
 
 def get_current_price(code):
-    url = f"http://comp.fnguide.com/SVO2/ASP/SVD_main.asp?pGB=1&gicode=A{code}"
+    acode = make_acode(code)
+    url = f"http://comp.fnguide.com/SVO2/ASP/SVD_main.asp?pGB=1&gicode={acode}"
     selector = "#svdMainChartTxt11"
     return get_element_by_css_selector(url, selector)
 

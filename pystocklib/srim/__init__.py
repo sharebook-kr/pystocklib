@@ -25,7 +25,12 @@ def estimate_price(code, w=1):
 def get_disparity(code, w=1):
     est_price = estimate_price("005930", w)
     cur_price = reader.get_current_price(code)
-    return (cur_price / est_price) * 100
+
+    try:
+        disparity = (cur_price / est_price) * 100
+    except:
+        disparity = 1000
+    return disparity
 
 
 if __name__ == "__main__":

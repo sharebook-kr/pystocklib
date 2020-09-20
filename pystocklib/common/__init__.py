@@ -39,6 +39,7 @@ def get_code_list_by_market(market=1):
     resp = requests.get(url)
     data = resp.json()
     df = pd.DataFrame(data)
+    df = df.set_index('cd')
     return df
 
 
