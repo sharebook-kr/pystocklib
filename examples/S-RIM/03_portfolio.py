@@ -4,8 +4,16 @@ import pystocklib.srim.reader as srim_reader
 import time
 import pandas as pd
 
-# kospi + kosdaq
-df = get_code_list_by_market()
+# KOSPI code list
+kospi = get_code_list_by_market(market=2)
+kospi.to_excel("KOSPI.xlsx")
+
+# KOSDAQ code list
+kosdaq = get_code_list_by_market(market=3)
+kosdaq.to_excel("KOSDAQ.xlsx")
+
+# KOSPI+KOSDAQ
+df = pd.concat([kospi, kosdaq])
 #print(df.head())
 
 # k
