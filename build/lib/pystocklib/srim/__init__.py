@@ -33,10 +33,7 @@ def estimate_price(code, k, w=1):
     """
     value, net_worth, roe, excess_earning = estimate_company_value(code, k, w)
     shares = reader.get_shares(code)
-    try:
-        price = value / shares
-    except:
-        price = 0
+    price = value / shares
     return price, shares, value, net_worth, roe, excess_earning
 
 

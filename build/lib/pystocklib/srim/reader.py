@@ -64,10 +64,7 @@ def get_shares(code):
     total_shares = get_element_by_css_selector(url, selector, rawdata=True)
     total_shares = total_shares.split("/")[0]
     total_shares = total_shares.replace(",", "")
-    try:
-        total_shares = float(total_shares)
-    except:
-        total_shares = 0
+    total_shares = float(total_shares)
 
     selector = "#svdMainGrid5 > table > tbody > tr:nth-child(5) > td:nth-child(3)"
     self_hold_shares = get_element_by_css_selector(url, selector)

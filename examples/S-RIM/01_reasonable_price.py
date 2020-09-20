@@ -15,8 +15,16 @@ kosdaq.to_excel("KOSDAQ.xlsx")
 codes = pd.concat([kospi, kosdaq])
 
 k = srim_reader.get_5years_earning_rate()
-for code in codes.index:
-    print(code, end="\t")
+
+# error cases
+#print(srim.estimate_price("344820", k))
+
+code_list = list(codes.index)
+#index = code_list.index("A318410")
+#code_list = code_list[index: ]
+
+for i, code in enumerate(code_list):
+    print(f"{i}/{len(code_list)} {code}", end="\t")
     price = srim.estimate_price(code, k)
     print(price)
 
