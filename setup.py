@@ -2,7 +2,7 @@ from setuptools import setup
 
 setup(
     name            = 'pystocklib',
-    version         = '0.0.2',
+    version         = '0.0.3',
     description     = 'python stock library',
     url             = 'https://github.com/sharebook-kr/pystocklib',
     author          = 'Lukas Yoo, Brayden Jo',

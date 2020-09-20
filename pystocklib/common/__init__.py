@@ -24,7 +24,7 @@ def get_elements_by_css_selector(url, selector):
         html = resp.text
         soup = BeautifulSoup(html, "html5lib")
         tags = soup.select(selector)
-        return [float(tag.text.replace(",", "")) for tag in tags]
+        return tags
     except:
         return None
 
