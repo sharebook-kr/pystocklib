@@ -1,0 +1,2 @@
+# pystocklib
+Python Stock Library 
